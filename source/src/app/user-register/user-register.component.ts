@@ -8,7 +8,11 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 
 export class UserRegisterComponent implements OnInit {
-  private url = "http://localhost:8080/user/register";
+
+  private registerUrl = "/api/user/register";
+  private loginUrl = "/api/user/login";
+  private greetUrl = "/api/greeting";
+  private lsUrl = "/api/user/all";
 
   constructor(public http: HttpClient) { }
   ngOnInit() {
@@ -18,7 +22,7 @@ export class UserRegisterComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.http.post(this.url,
+    this.http.post(this.registerUrl,
       {
         username: 'abc',
         password: "123456",
@@ -31,8 +35,7 @@ export class UserRegisterComponent implements OnInit {
 
 
   greeting() {
-    var api = 'http://localhost:8080/greeting';
-    this.http.get(`${api}`).subscribe((response: any) => {
+    this.http.get(this.greetUrl).subscribe((response: any) => {
       window.alert(response.name);
     });
   }
@@ -41,7 +44,7 @@ export class UserRegisterComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.http.post("http://localhost:8080/user/login",
+    this.http.post(this.loginUrl,
       {
         username: 'new-user',
         password: "123456",
@@ -54,7 +57,7 @@ export class UserRegisterComponent implements OnInit {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.http.post("http://localhost:8080/user/login",
+    this.http.post(this.loginUrl,
       {
         username: 'new-user',
         password: "wrong-password",
@@ -64,7 +67,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.http.get("http://localhost:8080/user/all").subscribe((response: any) => {
+    this.http.get(this.lsUrl).subscribe((response: any) => {
       window.alert(JSON.stringify(response));
     });
   }
