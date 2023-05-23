@@ -1,0 +1,26 @@
+<mat-list style="margin: 0 auto;">
+    <h3 mat-subheader>Products</h3>
+    <mat-list-item *ngFor="let product of products; index as productId">
+        <div class="description">
+            <h4 mat-line>
+                <a [title]="product.name + ' details'" 
+                [routerLink]="['/products', productId]">
+                    {{ product.name }}
+                </a>
+            </h4>
+            <p mat-line *ngIf="product.description">
+                description: {{ product.description }}
+            </p>
+        </div>
+        <div class="buttons">
+            <app-product-alerts [product]="product" (notify)="onNotify()">
+            </app-product-alerts>
+            <button style="margin-left: 20px;"  
+            (click)="share()">Share</button>
+        </div>
+    </mat-list-item>
+    <h3 mat-subheader>Users</h3>
+    <mat-list-item>
+        <app-user-register></app-user-register>
+    </mat-list-item>
+</mat-list>
