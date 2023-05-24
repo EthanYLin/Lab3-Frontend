@@ -46,7 +46,7 @@ export class UserRegisterComponent implements OnInit {
     };
     this.http.post(this.loginUrl,
       {
-        username: 'new-user',
+        username: 'abc',
         password: "123456",
       }, httpOptions).subscribe((response: any) => {
         window.alert(response.message);
@@ -59,7 +59,7 @@ export class UserRegisterComponent implements OnInit {
     };
     this.http.post(this.loginUrl,
       {
-        username: 'new-user',
+        username: 'abc',
         password: "wrong-password",
       }, httpOptions).subscribe((response: any) => {
         window.alert(response.message);
